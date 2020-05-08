@@ -8,7 +8,7 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 public class Book {
-    private final UUID id;
-    private final String name;
+    private final UUID isbn;
+    private final String title;
     private final String author;
 }
