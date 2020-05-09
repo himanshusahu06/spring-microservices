@@ -1,6 +1,9 @@
 package com.hsahu.application.main;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -14,11 +17,19 @@ import java.util.Arrays;
 @Slf4j
 @SpringBootApplication
 @ComponentScan("com.hsahu.application")
-public class Application {
+public class Application implements ApplicationRunner {
+
+    @Value("${server.port}")
+    private int port;
+
     public static void main(String[] args) {
         final ApplicationContext applicationContext =  SpringApplication.run(Application.class, args);
-        log.info("Spring boot application is running on localhost.");
-        log.info("List of beans loaded in spring's application context.");
-        Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(log::info);
+        log.debug("List of beans loaded in spring's application context.");
+        Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(log::debug);
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        log.info("Spring boot application is running on localhost at port {}", port);
     }
 }

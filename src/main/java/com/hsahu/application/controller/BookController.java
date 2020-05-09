@@ -1,6 +1,6 @@
 package com.hsahu.application.controller;
 
-import com.hsahu.application.biz.BookDaoBizImpl;
+import com.hsahu.application.biz.BookDaoBiz;
 import com.hsahu.application.dto.Book;
 import com.hsahu.application.exception.BookNotFoundException;
 import com.hsahu.application.exception.InvalidQueryException;
@@ -18,11 +18,11 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private BookDaoBizImpl bookDaoBiz;
+    private BookDaoBiz bookDaoBizImpl;
 
     @GetMapping
     List<Book> listAllBooks() {
-        return bookDaoBiz.getAllBooks();
+        return bookDaoBizImpl.getAllBooks();
     }
 
     @GetMapping("/search/author/{author}")
@@ -30,7 +30,7 @@ public class BookController {
         if (Strings.isBlank(author)) {
             throw new InvalidQueryException("Author name can not be empty.");
         }
-        return bookDaoBiz.searchBookByAuthor(author);
+        return bookDaoBizImpl.searchBookByAuthor(author);
     }
 
     @GetMapping("/search/title/{title}")
@@ -38,7 +38,7 @@ public class BookController {
         if (Strings.isBlank(title)) {
             throw new InvalidQueryException("Book title can not be empty.");
         }
-        return bookDaoBiz.searchBookByTitle(title);
+        return bookDaoBizImpl.searchBookByTitle(title);
     }
 
     @GetMapping("/isbn/{isbn}")
@@ -46,6 +46,6 @@ public class BookController {
         if (Strings.isBlank(isbn)) {
             throw new InvalidQueryException("Book ISBN number can not be empty.");
         }
-        return bookDaoBiz.getBookByIsbnNumber(isbn);
+        return bookDaoBizImpl.getBookByIsbnNumber(isbn);
     }
 }
