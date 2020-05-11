@@ -1,5 +1,6 @@
 package com.hsahu.application.biz;
 
+import com.hsahu.application.annotation.TrackTime;
 import com.hsahu.application.dto.Book;
 import com.hsahu.application.exception.BookNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -35,11 +36,13 @@ public class BookDaoBizImpl implements BookDaoBiz {
         books.add(bookH);
     }
 
+    @TrackTime
     @Override
     public List<Book> getAllBooks() {
         return books.stream().sorted(Comparator.comparing(Book::getTitle)).collect(Collectors.toList());
     }
 
+    @TrackTime
     @Override
     public List<Book> searchBookByAuthor(String author) {
         final String caseInsensitiveAuthor = author.toLowerCase();
@@ -47,6 +50,7 @@ public class BookDaoBizImpl implements BookDaoBiz {
                 book.getAuthor().toLowerCase().contains(caseInsensitiveAuthor)).collect(Collectors.toList());
     }
 
+    @TrackTime
     @Override
     public List<Book> searchBookByTitle(String titleString) {
         final String caseInsensitiveTitle = titleString.toLowerCase();
@@ -54,6 +58,7 @@ public class BookDaoBizImpl implements BookDaoBiz {
                 book.getTitle().toLowerCase().contains(caseInsensitiveTitle)).collect(Collectors.toList());
     }
 
+    @TrackTime
     @Override
     public Book getBookByIsbnNumber(String isbn) throws BookNotFoundException {
         final Optional<Book> book = books.stream().filter(b -> b.getIsbn().equals(UUID.fromString(isbn))).findFirst();

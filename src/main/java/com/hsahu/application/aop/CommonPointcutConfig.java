@@ -17,4 +17,11 @@ public class CommonPointcutConfig {
      */
     @Pointcut("bean(*Dao)")
     void daoBeanPointcut() {}
+
+    /**
+     * pointcut for any method annotated with given annotation.
+     * This is best way to crate annotation based aspect
+     */
+    @Pointcut("@annotation(com.hsahu.application.annotation.TrackTime)")
+    void trackedTimedPointcut(){}
 }
