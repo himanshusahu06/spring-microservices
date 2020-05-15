@@ -1,4 +1,4 @@
-package org.hsahu.springboot.cotroller;
+package org.hsahu.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

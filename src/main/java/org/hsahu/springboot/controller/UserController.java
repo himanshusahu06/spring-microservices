@@ -1,4 +1,4 @@
-package org.hsahu.springboot.cotroller;
+package org.hsahu.springboot.controller;
 
 import org.hsahu.springboot.dao.UserDaoService;
 import org.hsahu.springboot.dto.User;
