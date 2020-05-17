@@ -39,7 +39,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(jwtUnauthorizedResponseEntryPoint)
                 .and()
-                .authorizeRequests().antMatchers("/auth/**") // any request for auth must bypass authentication
+                .authorizeRequests().antMatchers("/auth/**", "/v2/api-docs", "/configuration/ui",
+                "/swagger-resources/**", "/configuration/security", "/swagger-ui.html", "/webjars/**") // any request for auth must bypass authentication
                 .permitAll().anyRequest().authenticated()
                 .and()
                 .sessionManagement()
