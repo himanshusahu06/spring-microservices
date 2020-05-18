@@ -9,7 +9,6 @@
     <version>2.2.2.RELEASE</version>
     <modules>
         <module>limits-service</module>
-        <module>spring-clound-config-server</module>
         <module>spring-cloud-config-server</module>
     </modules>
     <packaging>pom</packaging>
