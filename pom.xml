@@ -12,6 +12,7 @@
         <module>spring-cloud-config-server</module>
         <module>currency-exchange-service</module>
         <module>currency-conversion-sevice</module>
+        <module>netflix-eureka-naming-server</module>
     </modules>
     <packaging>pom</packaging>
     <parent>
