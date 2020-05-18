@@ -1,16 +1,18 @@
 package org.hsahu.microservice.currencyconversion;
 
+import org.hsahu.microservice.currencyconversion.feignproxy.CurrencyExchangeFeignProxy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class CurrencyConverterController {
+
+    @Autowired
+    private CurrencyExchangeFeignProxy currencyExchangeServiceFeignProxy;
 
     @GetMapping("/currency-converter/from/{from_currency}/to/{to_currency}/quantity/{quantity}")
     public ConvertedCurrency currencyConverter(
@@ -25,15 +27,8 @@ public class CurrencyConverterController {
         if (to.trim().length() != 3) {
             throw  new IllegalArgumentException("source currency must have at least 3 characters.");
         }
-
-        Map<String, String> variables = new HashMap<String, String>() {{
-            put("from", from);
-            put("to", to);
-        }};
-        ConvertedCurrency convertedCurrency = new RestTemplate()
-                .getForEntity("http://localhost:8000/currency-exchange/from/{from}/to/{to}", ConvertedCurrency.class, variables)
-                .getBody();
-        assert convertedCurrency != null;
+        // use currency  exchange feign proxy to invoke the currency exchange APIs
+        ConvertedCurrency convertedCurrency = currencyExchangeServiceFeignProxy.currencyExchange(from, to);
         convertedCurrency.setQuantity(quantity);
         convertedCurrency.setTotalCalculatedAmount(ConvertedCurrency.calculateAmount(convertedCurrency));
         return convertedCurrency;
