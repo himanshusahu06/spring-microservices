@@ -6,8 +6,16 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/**
+ * Feign client is used to invoke rest services built on spring web.
+ * Ribbon client is used for client side load distribution, both ribbon and feign must have exact
+ * same service name as registered in {spring.application.name} property of target service's
+ * application.properties file
+ */
 @FeignClient(name = "currency-exchange-service")
-@RibbonClient(name = "currency-exchange-service") // use ribbon for load distribution, this name must match with application.properties file
+// use feign to invoke rest services, name must match with {spring.application.name} property of target service
+@RibbonClient(name = "currency-exchange-service")
+// use ribbon for load distribution, name must match with {spring.application.name} property of target service
 public interface CurrencyExchangeFeignProxy {
 
     @GetMapping("/currency-exchange/from/{source_currency}/to/{destination_currency}")
