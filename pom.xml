@@ -13,6 +13,7 @@
         <module>currency-exchange-service</module>
         <module>currency-conversion-sevice</module>
         <module>netflix-eureka-naming-server</module>
+        <module>netfilx-zuul-api-gateway-server</module>
     </modules>
     <packaging>pom</packaging>
     <parent>
