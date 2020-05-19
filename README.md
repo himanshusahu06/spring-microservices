@@ -5,6 +5,7 @@
 3. **Netflix ribbon** - client side load distribution
 4. **Feign rest client** - rest client to invoke spring rest service with ease
 5. **eureka server** - naming server for service discovery
+5. **Zuul API gateway server** - api gateway server to reroute all request via this server instead of directly making call.zuul also supports load distribution.
 
 ![service workflow](images/workflow.png)
 

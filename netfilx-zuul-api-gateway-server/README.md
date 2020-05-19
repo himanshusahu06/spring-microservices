@@ -43,4 +43,14 @@ similarly, zuul equivalent endpoint for `http://localhost:8100/currency-converte
 1. all microservices and zuul api gateway servers are registered and discovered by eureka naming server.
 2. make sure application name for each microservice are put correctly.
 3. make sure all microservices along with zuul services are visible in eureka naming server.
-![eureka discovery](../images/eureka-discovery.png)
+
+    ![eureka discovery](../images/eureka-discovery.png)
+
+
+### Service Discovery with eureka
+
+![eureka registry](../images/registry.png)
+
+## Load distribution with Zuul and Eureka
+
+![load distribution with eureka and zuul](../images/load-distribution.png)
