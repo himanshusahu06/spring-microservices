@@ -39,6 +39,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
         </dependency>
+        <!-- distributed tracing -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
         <!-- eureka service discovery client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

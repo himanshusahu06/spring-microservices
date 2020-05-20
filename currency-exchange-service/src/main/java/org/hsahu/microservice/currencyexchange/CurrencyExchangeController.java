@@ -1,5 +1,6 @@
 package org.hsahu.microservice.currencyexchange;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Objects;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 public class CurrencyExchangeController {
 
@@ -37,6 +39,7 @@ public class CurrencyExchangeController {
         }
         int port = Integer.parseInt(Objects.requireNonNull(environment.getProperty("server.port")));
         currencyExchange.get().setPort(port);
+        log.info("{}", currencyExchange);
         return currencyExchange.get();
     }
 }

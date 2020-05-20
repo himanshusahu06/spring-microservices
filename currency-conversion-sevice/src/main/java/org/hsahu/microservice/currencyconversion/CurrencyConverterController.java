@@ -1,5 +1,6 @@
 package org.hsahu.microservice.currencyconversion;
 
+import lombok.extern.slf4j.Slf4j;
 import org.hsahu.microservice.currencyconversion.feignproxy.CurrencyExchangeFeignProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 
+@Slf4j
 @RestController
 public class CurrencyConverterController {
 
@@ -31,6 +33,7 @@ public class CurrencyConverterController {
         ConvertedCurrency convertedCurrency = currencyExchangeServiceFeignProxy.currencyExchange(from, to);
         convertedCurrency.setQuantity(quantity);
         convertedCurrency.setTotalCalculatedAmount(ConvertedCurrency.calculateAmount(convertedCurrency));
+        log.info("{}", convertedCurrency);
         return convertedCurrency;
     }
 }
